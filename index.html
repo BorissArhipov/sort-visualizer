@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Sort visualizer</title>
+    </head>
+    <body>
+        <header class="header navbar-light bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="header--wrap">
+                            <div class="navbar navbar-expand-lg">
+                                <h3 class="header--title">
+                                    Sort visualizer
+                                </h3>  
+                                <div class="form-group">
+                                    <label for="size">
+                                        Array size:
+                                    </label>
+                                    <input class="header--size form-control-range" type="range" id="size" name="size" min="1" max="50">  
+                                </div>
+                                <button id="randomize" class="btn btn-primary">
+                                    Randomize array
+                                </button>
+                                <select class="custom-select" id="select">
+                                    <option selected value="quick-sort">Quick sort</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                                <button id="sort" type="button" class="btn btn-success">
+                                    Sort!
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <section class="visualizer">
+            <div class="container">
+                <div class="visualizer--render"></div>
+            </div>
+        </section>
+    </body>
+</html>
