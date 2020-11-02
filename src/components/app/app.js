@@ -12,7 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const quickSort_1 = __importDefault(require("./quickSort/quickSort"));
+const quickSort_1 = __importDefault(require("../quickSort/quickSort"));
+const bubbleSort_1 = __importDefault(require("../bubbleSort/bubbleSort"));
 require("bootstrap-css-only");
 require("./app.css");
 class Visualizer {
@@ -60,15 +61,33 @@ class Visualizer {
             }
         });
     }
+    disactivateHud() {
+        this.sizeInput.setAttribute('disabled', 'true');
+        this.randomizeBtn.setAttribute('disabled', 'true');
+        this.sortType.setAttribute('disabled', 'true');
+        this.sortBtn.setAttribute('disabled', 'true');
+    }
+    activateHud() {
+        this.sizeInput.removeAttribute('disabled');
+        this.randomizeBtn.removeAttribute('disabled');
+        this.sortType.removeAttribute('disabled');
+        this.sortBtn.removeAttribute('disabled');
+    }
     sort() {
-        this.sortBtn.addEventListener('click', () => {
+        this.sortBtn.addEventListener('click', () => __awaiter(this, void 0, void 0, function* () {
             switch (this.sortType.value) {
                 case "quick-sort":
-                    quickSort.func(this.array, 0, this.array.length - 1, this.colors, this.draw, this.render);
+                    this.disactivateHud();
+                    yield quickSort.func(this.array, 0, this.array.length - 1, this.colors, this.draw, this.render);
+                    this.activateHud();
+                case "bubble-sort":
+                    this.disactivateHud();
+                    yield bubbleSort.func(this.array, this.colors, this.draw, this.render);
+                    this.activateHud();
                 default:
                     return;
             }
-        });
+        }));
     }
     arrayResize() {
         this.sizeInput.addEventListener('change', () => {
@@ -90,4 +109,5 @@ class Visualizer {
     }
 }
 const quickSort = new quickSort_1.default();
+const bubbleSort = new bubbleSort_1.default();
 new Visualizer();

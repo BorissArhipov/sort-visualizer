@@ -1,4 +1,5 @@
-import QuickSort from './quickSort/quickSort';
+import QuickSort from '../quickSort/quickSort';
+import BubbleSort from '../bubbleSort/bubbleSort';
 
 import 'bootstrap-css-only';
 import './app.css';
@@ -58,11 +59,31 @@ class Visualizer {
         }
     }
 
+    disactivateHud() {
+        this.sizeInput.setAttribute('disabled', 'true');
+        this.randomizeBtn.setAttribute('disabled', 'true');
+        this.sortType.setAttribute('disabled', 'true');
+        this.sortBtn.setAttribute('disabled', 'true');
+    }
+
+    activateHud() {
+        this.sizeInput.removeAttribute('disabled');
+        this.randomizeBtn.removeAttribute('disabled');
+        this.sortType.removeAttribute('disabled');
+        this.sortBtn.removeAttribute('disabled');
+    }
+
     sort() {
-        this.sortBtn.addEventListener('click', () => {
+        this.sortBtn.addEventListener('click', async () => {
             switch(this.sortType.value) {
                 case "quick-sort":
-                    quickSort.func(this.array, 0, this.array.length - 1, this.colors, this.draw, this.render);
+                    this.disactivateHud();
+                    await quickSort.func(this.array, 0, this.array.length - 1, this.colors, this.draw, this.render);
+                    this.activateHud();
+                case "bubble-sort": 
+                this.disactivateHud();
+                    await bubbleSort.func(this.array, this.colors, this.draw, this.render);
+                    this.activateHud();
                 default: 
                     return;
             }
@@ -94,5 +115,6 @@ class Visualizer {
 }
 
 const quickSort = new QuickSort();
+const bubbleSort = new BubbleSort();
 new Visualizer();
 
