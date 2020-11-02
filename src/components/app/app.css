@@ -48,13 +48,8 @@ body {
 
 .visualizer--render .progress {
     height: 100%;
-    width: 1%;
-}
-
-.visualizer--render .progress {
-    height: 100%;
     flex-basis: 100%;
-    margin: 0 5px;
+    margin: 0 2px;
 }
 
 .visualizer--render .progress .progress-bar {
