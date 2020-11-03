@@ -9,34 +9,37 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-class BubbleSort {
+class SelectionSort {
     func(array, colors, draw, render) {
         return __awaiter(this, void 0, void 0, function* () {
-            let j = 0;
-            let len = array.length;
-            while (j < array.length) {
-                for (let i = 0; i < len; i++) {
-                    colors[i] = '#ffc107';
-                    let a = Number(array[i].getAttribute('aria-valuenow'));
+            for (let i = 0; i < array.length; i++) {
+                let minInd = i;
+                colors[i] = '#ffc107';
+                yield draw(array, colors, render);
+                yield this.sleep(100);
+                for (let j = i; j < array.length; j++) {
+                    if (j != i) {
+                        colors[j] = '#28a745';
+                    }
                     yield draw(array, colors, render);
                     yield this.sleep(100);
-                    if (array[i + 1]) {
-                        let b = Number(array[i + 1].getAttribute('aria-valuenow'));
-                        colors[i + 1] = '#28a745';
-                        if (a > b) {
-                            yield draw(array, colors, render);
-                            this.swap(array, i, i + 1);
-                            i--;
-                        }
+                    let a = Number(array[minInd].getAttribute('aria-valuenow'));
+                    let b = Number(array[j].getAttribute('aria-valuenow'));
+                    if (a > b) {
+                        minInd = j;
+                        colors[j] = '#ffc107';
+                        yield draw(array, colors, render);
+                        yield this.sleep(100);
+                        colors[j] = '#007bff';
                     }
-                    colors[i] = '#007bff';
-                    colors[i + 1] = '#007bff';
+                    if (j != i) {
+                        colors[j] = '#007bff';
+                    }
                 }
-                len--;
-                j++;
+                yield this.swap(array, i, minInd);
+                colors[i] = '#007bff';
+                yield draw(array, colors, render);
             }
-            colors[0] = '#007bff';
-            yield draw(array, colors, render);
         });
     }
     swap(arr, a, b) {
@@ -53,4 +56,4 @@ class BubbleSort {
         });
     }
 }
-exports.default = BubbleSort;
+exports.default = SelectionSort;
