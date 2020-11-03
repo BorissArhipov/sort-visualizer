@@ -1,6 +1,7 @@
 import QuickSort from '../quickSort/quickSort';
 import BubbleSort from '../bubbleSort/bubbleSort';
 import SelectionSort from '../selectionSort/selectionSort';
+import InsertionSort from '../insertionSort/insertionSort';
 
 import 'bootstrap-css-only';
 import './app.css';
@@ -92,6 +93,11 @@ class Visualizer {
                     await selectionSort.func(this.array, this.colors, this.draw, this.render);
                     this.activateHud();
                     return;
+                case 'insertion-sort':
+                    this.disactivateHud();
+                    await insertionSort.func(this.array, this.colors, this.draw, this.render);
+                    this.activateHud();
+                    return;
                 default: 
                     return;
             }
@@ -125,5 +131,6 @@ class Visualizer {
 const quickSort = new QuickSort();
 const bubbleSort = new BubbleSort();
 const selectionSort = new SelectionSort();
+const insertionSort = new InsertionSort();
 new Visualizer();
 

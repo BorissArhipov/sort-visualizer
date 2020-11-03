@@ -28,7 +28,7 @@ class SelectionSort {
                 }    
             }
             await this.swap(array, i, minInd);    
-            colors[i] = '#007bff';
+                colors[i] = '#007bff';
             await draw(array, colors, render);
         }
     }

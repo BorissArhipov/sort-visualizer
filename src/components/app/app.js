@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const quickSort_1 = __importDefault(require("../quickSort/quickSort"));
 const bubbleSort_1 = __importDefault(require("../bubbleSort/bubbleSort"));
 const selectionSort_1 = __importDefault(require("../selectionSort/selectionSort"));
+const insertionSort_1 = __importDefault(require("../insertionSort/insertionSort"));
 require("bootstrap-css-only");
 require("./app.css");
 class Visualizer {
@@ -92,6 +93,11 @@ class Visualizer {
                     yield selectionSort.func(this.array, this.colors, this.draw, this.render);
                     this.activateHud();
                     return;
+                case 'insertion-sort':
+                    this.disactivateHud();
+                    yield insertionSort.func(this.array, this.colors, this.draw, this.render);
+                    this.activateHud();
+                    return;
                 default:
                     return;
             }
@@ -119,4 +125,5 @@ class Visualizer {
 const quickSort = new quickSort_1.default();
 const bubbleSort = new bubbleSort_1.default();
 const selectionSort = new selectionSort_1.default();
+const insertionSort = new insertionSort_1.default();
 new Visualizer();
