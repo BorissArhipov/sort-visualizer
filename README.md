@@ -12,7 +12,7 @@ The project visualizes the work on each algorithm. User can change array size an
 ## Responsibilities:
 
 * Building up a typescript project
-* Implementing OPP
+* Implementing OOP
 * Implementing async functions
 * Using diffrent sorting algorithms
 
