@@ -8,7 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const utils_1 = __importDefault(require("../utils/utils"));
 class QuickSort {
     func(array, start, end, colors, draw, render) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -34,31 +38,18 @@ class QuickSort {
             colors[pivotIndex] = '#ffc107';
             for (let i = start; i < end; i++) {
                 if (Number(array[i].getAttribute('aria-valuenow')) < pivotValue) {
-                    yield this.swap(array, i, pivotIndex);
+                    yield utils_1.default.swap(array, i, pivotIndex);
                     colors[pivotIndex] = '#007bff';
                     pivotIndex++;
                     colors[pivotIndex] = '#ffc107';
                 }
                 yield draw(array, colors, render);
             }
-            yield this.swap(array, pivotIndex, end);
+            yield utils_1.default.swap(array, pivotIndex, end);
             for (let i = start; i < end; i++) {
                 colors[i] = '#007bff';
             }
             return pivotIndex;
-        });
-    }
-    swap(arr, a, b) {
-        return __awaiter(this, void 0, void 0, function* () {
-            yield this.sleep(100);
-            let temp = arr[a];
-            arr[a] = arr[b];
-            arr[b] = temp;
-        });
-    }
-    sleep(ms) {
-        return __awaiter(this, void 0, void 0, function* () {
-            return new Promise(resolve => setTimeout(resolve, ms));
         });
     }
 }

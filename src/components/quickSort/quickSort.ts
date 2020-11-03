@@ -1,3 +1,5 @@
+import Utils from '../utils/utils';
+
 class QuickSort {
     
     async func(array: HTMLDivElement[], start: number, end: number, colors: string[], draw: Function, render: HTMLDivElement):Promise<void> {
@@ -28,31 +30,20 @@ class QuickSort {
         colors[pivotIndex]='#ffc107';
         for(let i = start; i < end; i++) {
             if(Number(array[i].getAttribute('aria-valuenow')) < pivotValue) {
-                await this.swap(array, i, pivotIndex);
+                await Utils.swap(array, i, pivotIndex);
                 colors[pivotIndex]='#007bff';
                 pivotIndex++;
                 colors[pivotIndex]='#ffc107';
             }
             await draw(array, colors, render);
         }
-        await this.swap(array, pivotIndex, end);
+        await Utils.swap(array, pivotIndex, end);
 
         for(let i = start; i < end; i++) {
             colors[i] = '#007bff';
         }
 
         return pivotIndex;
-    }
-
-    async swap(arr: HTMLDivElement[], a: number, b: number) {
-        await this.sleep(100);
-        let temp = arr[a];
-        arr[a] = arr[b];
-        arr[b] = temp;  
-    }
-
-    async sleep(ms: number) {
-        return new Promise(resolve => setTimeout(resolve, ms));
     }
 }
 
